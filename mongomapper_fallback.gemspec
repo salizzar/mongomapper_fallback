@@ -5,7 +5,7 @@ Gem::Specification.new do |gem|
   gem.authors       = ["Marcelo Correia Pinheiro"]
   gem.email         = ["salizzar@gmail.com"]
   gem.description   = %q{MongoMapper replicaset fallback mechanism}
-  gem.summary       = %q{MongoMapperFallback is a simple mechanism to handle common replicaset connection failures.}
+  gem.summary       = %q{MongomapperFallback is a simple mechanism to handle common replicaset connection failures.}
   gem.homepage      = "https://github.com/salizzar/mongomapper_fallback"
 
   gem.files         = `git ls-files`.split($\)

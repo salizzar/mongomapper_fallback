@@ -21,6 +21,13 @@ describe MongomapperFallback do
     MongoMapper.stub(connection: connection)
   end
 
+  it 'raises error when it is not related to a MongoDB connection error' do
+    error = Exception.new 'an error'
+    subject.should_receive(:perform_a_operation).and_raise(error)
+
+    expect { subject.execute }.to raise_error(error)
+  end
+
   describe 'detecting MongoDB connection errors' do
     describe 'detecting Mongo::ConnectionFailure error' do
       it 'refreshs connection' do
@@ -71,13 +78,6 @@ describe MongomapperFallback do
         expect { subject.execute }.to_not raise_error
       end
     end
-  end
-
-  it 'raises error when it is not related to a MongoDB connection error' do
-    error = Exception.new 'an error'
-    subject.should_receive(:perform_a_operation).and_raise(error)
-
-    expect { subject.execute }.to raise_error(error)
   end
 
   describe 'custom configuration' do

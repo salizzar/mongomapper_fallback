@@ -1,6 +1,8 @@
 # MongomapperFallback
 
-TODO: Write a gem description
+At this time, MongoMapper not have any mechanism to properly handle Replicaset connection failures (commonly master falls and arbiter was not selected any server yet).
+
+MongomapperFallback is a alternative to handle these failures with a simple retry mechanism.
 
 ## Installation
 
@@ -18,7 +20,23 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+    # example.rb
+    class Example
+      include MongomapperFallback
+
+      def execute
+        logger = Logger.new('your_logger_or_slogger_here.rb')
+
+        # available options:
+        # - retry_limit: limit of retries that will be executed
+        # - sig_quit: sends a QUIT to current process before retry failed code again
+
+        replicaset_safe_run!(logger, retry_limit: 10, sig_quit: true) do
+          # perform any operation
+        end
+      end
+    end
+
 
 ## Contributing
 
