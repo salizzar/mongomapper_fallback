@@ -1,6 +1,6 @@
 # MongomapperFallback
 
-At this time, MongoMapper not have any mechanism to properly handle Replicaset connection failures (commonly master falls and arbiter was not selected any server yet).
+At this time, MongoMapper not have any mechanism to properly handle Replicaset connection failures (commonly master falls down and arbiter was not selected any server yet).
 
 MongomapperFallback is a alternative to handle these failures with a simple retry mechanism.
 
@@ -25,7 +25,7 @@ Or install it yourself as:
       include MongomapperFallback
 
       def execute
-        logger = Logger.new('your_logger_or_slogger_here.rb')
+        logger = Logger.new('your_logfile_here.log') # or Slogger
 
         # available options:
         # - retry_limit: limit of retries that will be executed
